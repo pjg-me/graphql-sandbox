@@ -1,0 +1,50 @@
+type Order {
+    comments: String
+    orderDate: String!
+    orderNumber: Int!
+    requiredDate: String!
+    shippedDate: String
+    status: String!
+    products: [OrderProduct]!
+    orderTotal: Float!
+}
+
+type OrderProduct {
+    productCode: String!
+    priceEach: Float!
+    quantityOrdered: Int!
+    productName: String!
+    productVendor: String!
+    productDescription: String!
+}
+
+type SalesRepresentative {
+    employeeNumber: String!
+    firstName: String!
+    lastName: String!
+    extension: String!
+    email: String!
+    jobTitle: String!
+}
+
+type Customer {
+    addressLine1: String!,
+    addressLine2: String,
+    city: String!,
+    contactFirstName: String!,
+    contactLastName: String!,
+    country: String!,
+    creditLimit: Float,
+    customerName: String!,
+    customerNumber: Int!,
+    phone: String!,
+    postalCode: String,
+    state: String
+    orders(orderNumber: Int, highestValue: Boolean): [Order],
+    salesRepresentative: SalesRepresentative
+}
+
+type Query {
+    orders: [Order]
+    customers(customerNumber: Int): [Customer]
+}
